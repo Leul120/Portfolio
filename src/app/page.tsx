@@ -180,7 +180,7 @@ export default function Home() {
       </div>
 
       {/* CENTER COLUMN - Hero & Projects */}
-      <div className="md:col-span-6 flex flex-col gap-4">
+      <div className="md:col-span-6 flex flex-col gap-">
         <Module title="Executive_Summary" delay={0.3}>
           <div className="relative">
             <p className="text-lg leading-relaxed font-light first-letter:text-4xl first-letter:font-bold first-letter:mr-2 first-letter:float-left">
