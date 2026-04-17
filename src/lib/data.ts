@@ -23,70 +23,73 @@ Experienced in building self-healing systems with automated failover, circuit br
   experience: [
     {
       company: "Addis Financials",
-      role: "Senior System Engineer",
-      period: "Dec 2024 – Aug 2025",
-      location: "Addis Ababa, Ethiopia",
+      role: "Backend Developer",
+      period: "12/2024 – 08/2025",
+      location: "Remote",
       points: [
-        "Designed and implemented event-driven microservices architecture handling 10K+ TPS with 99.95% uptime SLA",
-        "Built distributed transaction coordination using Saga pattern with Kafka for eventual consistency",
-        "Implemented circuit breakers, bulkheads, and rate limiting for fault isolation and graceful degradation",
-        "Deployed containerized infrastructure on AWS ECS with auto-scaling policies based on custom metrics",
-        "Established observability stack with distributed tracing (Jaeger), structured logging, and Prometheus metrics",
-        "Led capacity planning exercises and performance tuning, reducing p99 latency by 60%"
+        "Spearheaded the V2 Platform Evolution: Led the architectural migration of the core financial engine from a monolithic v1 to a high-availability Microservices architecture using Spring Boot, resulting in a 40% reduction in deployment lead time and vastly improved fault isolation.",
+        "Database & Query Optimization: Overhauled the persistence layer by implementing PostgreSQL indexing strategies and a Redis-based read-aside caching pattern, which slashed primary database CPU load by 30% and achieved sub-100ms latency for critical financial reporting endpoints.",
+        "Event-Driven Resilience: Engineered an asynchronous communication backbone using Apache Kafka, enabling real-time transaction synchronization across distributed services while ensuring strict eventual consistency for ledger updates.",
+        "Secure API Orchestration: Designed and documented security-hardened RESTful APIs (OAuth2/JWT) using OpenAPI/Swagger, which streamlined 3rd-party integrations and reduced frontend-backend coordination overhead by two weeks per development cycle."
       ]
     },
     {
-      company: "Freelance & Consulting",
-      role: "System Architecture Consultant",
-      period: "Jan 2024 – Nov 2024",
-      location: "Remote",
+      company: "360GROUND",
+      role: "Backend Developer",
+      period: "07/2024 – 11/2024",
+      location: "Addis Ababa",
       points: [
-        "Architected distributed systems for 6+ clients across fintech, education, and logistics sectors",
-        "Designed service mesh infrastructure with Eureka discovery, load balancing, and intelligent routing",
-        "Implemented event sourcing and CQRS patterns for high-throughput data pipelines",
-        "Established SRE practices including SLOs, error budgets, and incident response runbooks",
-        "Conducted chaos engineering experiments to validate system resilience and failover mechanisms",
-        "Advised on database sharding strategies and read replica topologies for horizontal scalability"
+        "Architected a Scalable Modular Monolith: Designed a robust backend using Express.js, enforcing strict separation of concerns and modularity to handle high-concurrency traffic while maintaining a clean, maintainable codebase.",
+        "Concurrency & Data Integrity: Engineered high-throughput API endpoints utilizing Redis-based distributed locking and session management, successfully eliminating race conditions during peak transaction periods.",
+        "Performance Engineering: Conducted deep-dive Node.js event-loop profiling and debugging to identify and resolve blocking operations, achieving a 99.9% uptime standard and optimizing resource utilization across the stack."
+      ]
+    },
+    {
+      company: "Freelance Projects",
+      role: "Fullstack Developer",
+      period: "01/2024 – 11/2024",
+      location: "Online",
+      points: [
+        "Architected bespoke end-to-end solutions for diverse clients, focusing on scalable API infrastructures and cloud-native deployments.",
+        "Developed real-time data processing engines utilizing FastAPI and Node.js, tailored for high-performance requirements and low-latency data streaming.",
+        "Containerized legacy infrastructures using Docker, simplifying environment parity and significantly reducing deployment issues.",
+        "Consulted on Cloud Strategy: Advised clients on AWS resource optimization (IAM, VPC, S3) to balance high availability with cost-efficiency."
       ]
     },
     {
       company: "LDDA Technologies",
-      role: "Infrastructure Engineer",
-      period: "Feb 2023 – Nov 2024",
-      location: "Addis Ababa, Ethiopia",
+      role: "Backend Engineer",
+      period: "02/2023 – 11/2023",
+      location: "Addis Ababa",
       points: [
-        "Designed and operated video streaming infrastructure with CDN integration and adaptive bitrate delivery",
-        "Implemented Redis clustering for distributed caching and session management at scale",
-        "Built real-time analytics pipeline processing 1M+ events daily with Kafka and Flink",
-        "Established CI/CD pipelines with blue-green deployment strategies and automated rollback mechanisms",
-        "Implemented database replication topologies and automated failover procedures",
-        "Conducted post-mortems and root cause analysis for production incidents, improving MTTR by 50%"
+        "Developed a secure EdTech backend using Node.js/Express, managing complex user hierarchies and role-based access control (RBAC).",
+        "Engineered a custom video streaming module, implementing chunked uploads and optimized retrieval paths for low-bandwidth environments.",
+        "Database Optimization: Refined PostgreSQL indexing and query execution plans, cutting data retrieval times for large-scale enrollment reports by 50%.",
+        "Integrated secure payment gateways and analytics endpoints, providing real-time financial tracking for platform administrators."
       ]
     },
     {
-      company: "Prime Software Plc",
-      role: "System Engineer",
-      period: "May 2022 – Dec 2022",
-      location: "Addis Ababa, Ethiopia",
+      company: "Alter Digital Solutions",
+      role: "Fullstack Engineer",
+      period: "05/2022 – 12/2022",
+      location: "Addis Ababa",
       points: [
-        "Architected enterprise service mesh with Spring Cloud Gateway and Netflix OSS stack",
-        "Implemented OAuth2/OIDC identity federation with multi-tenant authorization",
-        "Designed database partitioning strategy handling 500K+ records with sub-100ms query performance",
-        "Built health check and readiness probe systems for Kubernetes orchestration",
-        "Implemented distributed rate limiting using Redis Cell for API gateway protection"
+        "Enterprise Fullstack Development: Engineered modular, end-to-end web applications leveraging Spring Boot for robust backend logic and React.js for dynamic, state-driven user interfaces.",
+        "Performance Engineering: Identified and resolved critical performance bottlenecks by optimizing Hibernate/JPA queries and implementing efficient data-transfer objects (DTOs), reducing payload sizes and server-side processing time.",
+        "Scalable API Design: Architected and documented RESTful APIs following industry best practices, ensuring high maintainability and seamless integration between the Java-based micro-modules and the frontend.",
+        "System Reliability & Debugging: Enhanced application stability by implementing structured error-handling frameworks and conducting deep-dive debugging of production services to maintain high uptime."
       ]
     },
     {
       company: "Efuye Gela",
-      role: "Platform Engineer & Tech Lead",
-      period: "Feb 2022 – May 2022",
-      location: "Addis Ababa, Ethiopia",
+      role: "Fullstack Developer",
+      period: "02/2022 – 05/2022",
+      location: "Addis Ababa",
       points: [
-        "Architected e-commerce platform handling 1000+ concurrent sessions with auto-scaling",
-        "Designed eventual consistency model for inventory management across distributed nodes",
-        "Implemented payment reconciliation system with idempotency guarantees and retry logic",
-        "Established monitoring dashboards and alerting for critical business metrics",
-        "Led platform reliability initiatives including load testing and stress testing protocols"
+        "End-to-End Engine Development: Engineered the core logic for 'EGA', a high-performance e-commerce platform for game rentals, taking the product from initial architectural design to successful production launch.",
+        "Full-Stack Optimization: Leveraged Next.js (SSR/ISR) and Tailwind CSS to build a lightning-fast, SEO-optimized frontend, achieving high Core Web Vitals scores and a seamless user experience.",
+        "Type-Safe Data Modeling: Architected a scalable schema using Prisma ORM and MongoDB, ensuring data integrity across complex rental cycles, user inventories, and transaction logs.",
+        "FinTech Integration: Developed a secure payment bridge for Telebirr, handling encrypted callbacks and transaction verification to facilitate local-compliant digital payments."
       ]
     },
   ],

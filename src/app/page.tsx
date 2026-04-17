@@ -225,70 +225,81 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className='fixed inset-0 z-50 bg-black/90 backdrop-blur-xl overflow-y-auto'
+      className='fixed inset-0 z-50 flex items-center justify-center p-4 lg:p-8'
       onClick={onClose}
     >
-      <div className='min-h-screen px-6 py-20'>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 40 }}
-          className='max-w-[900px] mx-auto'
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* Close Button */}
+      {/* Backdrop */}
+      <div className='absolute inset-0 bg-black/80 backdrop-blur-sm' />
+
+      {/* Modal Container */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] as const }}
+        className='relative w-full max-w-[900px] max-h-[85vh] overflow-y-auto bg-[#1c1c1e] border border-[rgba(255,255,255,0.2)] shadow-2xl'
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Modal Header Border */}
+        <div className='sticky top-0 z-10 bg-[#1c1c1e] border-b border-[rgba(255,255,255,0.1)] px-8 py-4 flex items-center justify-between'>
+          <div className='flex items-center gap-3'>
+            <span className='tag tag-blue'>{project.category}</span>
+            <span className='tag tag-green'>{project.status}</span>
+          </div>
           <button
             onClick={onClose}
-            className='fixed top-6 right-6 w-10 h-10 flex items-center justify-center bg-[#2c2c2e] hover:bg-[#3a3a3c] transition-colors'
+            className='w-8 h-8 flex items-center justify-center bg-[#2c2c2e] hover:bg-[#3a3a3c] transition-colors border border-[rgba(255,255,255,0.1)]'
           >
-            <X className='w-5 h-5' />
+            <X className='w-4 h-4' />
           </button>
+        </div>
 
+        {/* Modal Content */}
+        <div className='p-8'>
           {/* Header */}
-          <div className='mb-12'>
-            <div className='flex flex-wrap gap-2 mb-4'>
-              <span className='tag tag-blue'>{project.category}</span>
-              <span className='tag tag-green'>{project.status}</span>
-            </div>
-            <h2 className='text-[48px] lg:text-[64px] font-semibold leading-[1.05] tracking-[-0.021em] mb-4'>
+          <div className='mb-10'>
+            <h2 className='text-[36px] lg:text-[48px] font-semibold leading-[1.05] tracking-[-0.021em] mb-4'>
               {project.title}
             </h2>
-            <p className='text-[21px] text-[rgba(255,255,255,0.6)] leading-[1.4]'>
+            <p className='text-[18px] text-[rgba(255,255,255,0.6)] leading-[1.4]'>
               {project.shortDesc}
             </p>
           </div>
 
           {/* Highlights Grid */}
-          <div className='grid grid-cols-3 gap-4 mb-12'>
+          <div className='grid grid-cols-3 gap-3 mb-10'>
             {project.highlights.map((h) => (
-              <div key={h.label} className='card p-5 text-center'>
-                <div className='text-xs text-[rgba(255,255,255,0.6)] uppercase tracking-wide mb-2'>
+              <div key={h.label} className='bg-[#2c2c2e] border border-[rgba(255,255,255,0.1)] p-4 text-center'>
+                <div className='text-xs text-[rgba(255,255,255,0.6)] uppercase tracking-wide mb-1'>
                   {h.label}
                 </div>
-                <div className='text-lg font-semibold text-[#0a84ff]'>{h.value}</div>
+                <div className='text-base font-semibold text-[#0a84ff]'>{h.value}</div>
               </div>
             ))}
           </div>
 
           {/* Overview */}
-          <div className='mb-12'>
-            <h3 className='text-[24px] font-semibold mb-4 tracking-[-0.021em]'>Overview</h3>
-            <p className='text-[17px] text-[rgba(255,255,255,0.6)] leading-[1.6] whitespace-pre-line'>
+          <div className='mb-10'>
+            <h3 className='text-[20px] font-semibold mb-4 tracking-[-0.021em] flex items-center gap-2'>
+              <span className='w-1 h-5 bg-[#0a84ff]' />
+              Overview
+            </h3>
+            <p className='text-[15px] text-[rgba(255,255,255,0.6)] leading-[1.7] whitespace-pre-line pl-3 border-l border-[rgba(255,255,255,0.1)]'>
               {project.fullDesc}
             </p>
           </div>
 
           {/* Two Column Layout */}
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10'>
             {/* Key Features */}
-            <div className='card p-6'>
-              <h3 className='text-[18px] font-semibold mb-5 flex items-center gap-2 tracking-[-0.021em]'>
-                <Zap className='w-5 h-5 text-[#ff9f0a]' />
+            <div className='bg-[#2c2c2e] border border-[rgba(255,255,255,0.1)] p-6'>
+              <h3 className='text-[16px] font-semibold mb-4 flex items-center gap-2 tracking-[-0.021em]'>
+                <Zap className='w-4 h-4 text-[#ff9f0a]' />
                 Key Features
               </h3>
               <ul className='space-y-3'>
                 {project.keyFeatures.map((feature, i) => (
-                  <li key={i} className='flex items-start gap-3 text-[15px] text-[rgba(255,255,255,0.8)] leading-[1.5]'>
+                  <li key={i} className='flex items-start gap-3 text-[14px] text-[rgba(255,255,255,0.8)] leading-[1.5]'>
                     <ChevronRight className='w-4 h-4 text-[#0a84ff] mt-0.5 shrink-0' />
                     <span>{feature}</span>
                   </li>
@@ -297,14 +308,14 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
             </div>
 
             {/* Architecture */}
-            <div className='card p-6'>
-              <h3 className='text-[18px] font-semibold mb-5 flex items-center gap-2 tracking-[-0.021em]'>
-                <Workflow className='w-5 h-5 text-[#5e5ce6]' />
+            <div className='bg-[#2c2c2e] border border-[rgba(255,255,255,0.1)] p-6'>
+              <h3 className='text-[16px] font-semibold mb-4 flex items-center gap-2 tracking-[-0.021em]'>
+                <Workflow className='w-4 h-4 text-[#5e5ce6]' />
                 Architecture
               </h3>
               <ul className='space-y-3'>
                 {project.architecture.map((item, i) => (
-                  <li key={i} className='flex items-start gap-3 text-[15px] text-[rgba(255,255,255,0.8)] leading-[1.5]'>
+                  <li key={i} className='flex items-start gap-3 text-[14px] text-[rgba(255,255,255,0.8)] leading-[1.5]'>
                     <ChevronRight className='w-4 h-4 text-[#5e5ce6] mt-0.5 shrink-0' />
                     <span>{item}</span>
                   </li>
@@ -314,11 +325,14 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           </div>
 
           {/* Technology Stack */}
-          <div className='mb-12'>
-            <h3 className='text-[18px] font-semibold mb-4 tracking-[-0.021em]'>Technology Stack</h3>
-            <div className='flex flex-wrap gap-2'>
+          <div className='mb-8'>
+            <h3 className='text-[16px] font-semibold mb-4 tracking-[-0.021em] flex items-center gap-2'>
+              <span className='w-1 h-4 bg-[#30d158]' />
+              Technology Stack
+            </h3>
+            <div className='flex flex-wrap gap-2 pl-3 border-l border-[rgba(255,255,255,0.1)]'>
               {project.tech.map((tech) => (
-                <span key={tech} className='tag'>
+                <span key={tech} className='bg-[#2c2c2e] border border-[rgba(255,255,255,0.1)] px-3 py-1.5 text-[13px] text-[rgba(255,255,255,0.9)]'>
                   {tech}
                 </span>
               ))}
@@ -326,18 +340,20 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           </div>
 
           {/* GitHub Link */}
-          <a
-            href={project.github}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='btn-primary inline-flex items-center gap-2'
-          >
-            <Github className='w-5 h-5' />
-            View on GitHub
-            <ExternalLink className='w-4 h-4' />
-          </a>
-        </motion.div>
-      </div>
+          <div className='pt-6 border-t border-[rgba(255,255,255,0.1)]'>
+            <a
+              href={project.github}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='btn-primary inline-flex items-center gap-2'
+            >
+              <Github className='w-5 h-5' />
+              View on GitHub
+              <ExternalLink className='w-4 h-4' />
+            </a>
+          </div>
+        </div>
+      </motion.div>
     </motion.div>
   );
 }
