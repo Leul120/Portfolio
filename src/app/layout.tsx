@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const jetBrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Leul Melkamu | Backend Engineer",
-  description: "Portfolio of Leul Melkamu Bezabih - Senior Backend Developer specialized in Microservices and Cloud Infrastructure.",
+  title: "Leul Melkamu | Senior System Engineer",
+  description: "System Engineer specializing in distributed systems, infrastructure architecture, and platform engineering. Designing resilient, scalable systems with 99.9% availability.",
+  keywords: ["System Engineer", "SRE", "Distributed Systems", "Microservices", "Platform Engineering", "Cloud Infrastructure", "Spring Boot", "Kafka", "Kubernetes"],
+  authors: [{ name: "Leul Melkamu Bezabih" }],
+  openGraph: {
+    title: "Leul Melkamu | Senior System Engineer",
+    description: "Designing and operating distributed systems at scale",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -20,11 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${jetBrainsMono.variable} font-mono antialiased bg-background text-foreground`}
+        className={`${inter.variable} font-sans antialiased bg-background text-foreground`}
       >
-        <div className="crt-overlay" />
-        <div className="crt-scanline" />
-        <main className="relative z-10 min-h-screen">
+        <main className="relative min-h-screen">
           {children}
         </main>
       </body>
