@@ -10,108 +10,91 @@ import {
   Github,
   ExternalLink,
   ChevronRight,
-  Code,
-  Database,
-  Server,
-  Cloud,
-  Cpu,
-  Globe,
   X,
-  Clock,
-  Folder,
-  Layers,
-  ArrowUpRight,
-  Sparkles,
   Menu,
-  Zap,
+  ArrowUpRight,
+  Clock,
+  Server,
+  Database,
+  Cloud,
+  Layers,
+  Activity,
+  Cpu,
+  Radio,
   Shield,
-  Workflow
+  Terminal,
+  Workflow,
+  Zap
 } from "lucide-react";
 import Link from "next/link";
 import { RESUME_DATA, Project } from "@/lib/data";
 
-// Animation variants
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 }
+// Animation variants - Apple style (subtle)
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } }
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 }
-  }
+  visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
 };
 
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: { opacity: 1, scale: 1 }
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.4 } }
 };
 
-// Navigation Component
+// Navigation - Apple Style
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
+    { name: 'About', href: '#about' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-xl font-bold gradient-text">
-            LM.
+    <nav className='fixed top-0 left-0 right-0 z-50 nav-glass'>
+      <div className='max-w-[1200px] mx-auto px-6 lg:px-8'>
+        <div className='flex items-center justify-between h-12'>
+          <Link href='/' className='text-[21px] font-semibold tracking-tight text-white'>
+            LM
           </Link>
           
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className='hidden md:flex items-center space-x-8'>
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm text-foreground-muted hover:text-foreground transition-colors link-underline"
+                className='text-xs text-[rgba(255,255,255,0.8)] hover:text-white transition-colors tracking-wide'
               >
                 {link.name}
               </a>
             ))}
-            <a
-              href={`mailto:${RESUME_DATA.email}`}
-              className="btn-primary text-sm"
-            >
-              Get in Touch
-            </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            <Menu className="w-6 h-6" />
+          <button className='md:hidden p-2' onClick={() => setIsOpen(!isOpen)}>
+            <Menu className='w-5 h-5' />
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
+            animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t border-border"
+            className='md:hidden nav-glass border-t border-[rgba(255,255,255,0.1)]'
           >
-            <div className="px-4 py-4 space-y-3">
+            <div className='px-6 py-4 space-y-3'>
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="block text-sm text-foreground-muted hover:text-foreground transition-colors"
+                  className='block text-sm text-[rgba(255,255,255,0.8)] hover:text-white'
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
@@ -125,302 +108,346 @@ function Navigation() {
   );
 }
 
-// Hero Section
+// Hero Section - Apple Style
 function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 grid-pattern opacity-50" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
-      
-      <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
+    <section id='about' className='min-h-screen flex items-center pt-12'>
+      <div className='max-w-[1200px] mx-auto px-6 lg:px-8 w-full'>
         <motion.div
-          initial="hidden"
-          animate="visible"
+          initial='hidden'
+          animate='visible'
           variants={staggerContainer}
+          className='grid grid-cols-1 lg:grid-cols-12 gap-12 items-center'
         >
-          <motion.div variants={fadeInUp} className="mb-6">
-            <span className="badge badge-primary">
-              <Sparkles className="w-3 h-3 mr-1" />
-              Available for Opportunities
-            </span>
-          </motion.div>
+          {/* Left - Main Info */}
+          <div className='lg:col-span-7'>
+            <motion.div variants={fadeUp}>
+              <span className='tag tag-blue mb-6'>System Engineer</span>
+            </motion.div>
 
-          <motion.h1 
-            variants={fadeInUp}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
-          >
-            <span className="block">{RESUME_DATA.name}</span>
-            <span className="block mt-2 gradient-text">{RESUME_DATA.title}</span>
-          </motion.h1>
+            <motion.h1 
+              variants={fadeUp}
+              className='text-[56px] lg:text-[80px] font-semibold leading-[1.05] tracking-[-0.03em] mb-6'
+            >
+              {RESUME_DATA.name}
+            </motion.h1>
 
-          <motion.p 
-            variants={fadeInUp}
-            className="text-lg md:text-xl text-foreground-muted max-w-2xl mx-auto mb-4"
-          >
-            {RESUME_DATA.subtitle}
-          </motion.p>
+            <motion.p 
+              variants={fadeUp}
+              className='text-[21px] lg:text-[28px] text-[rgba(255,255,255,0.6)] leading-[1.4] tracking-[-0.021em] mb-8 max-w-[600px]'
+            >
+              {RESUME_DATA.subtitle}
+            </motion.p>
 
-          <motion.p 
-            variants={fadeInUp}
-            className="text-base text-foreground-muted/80 max-w-3xl mx-auto mb-10 leading-relaxed"
-          >
-            {RESUME_DATA.profile.split('\n\n')[0]}
-          </motion.p>
+            <motion.p 
+              variants={fadeUp}
+              className='text-[17px] text-[rgba(255,255,255,0.6)] leading-[1.5] mb-10 max-w-[560px]'
+            >
+              {RESUME_DATA.profile.split('\n\n')[0]}
+            </motion.p>
 
-          <motion.div 
-            variants={fadeInUp}
-            className="flex flex-wrap justify-center gap-4 mb-12"
-          >
-            <a href="#projects" className="btn-primary flex items-center gap-2">
-              View Projects
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
-            <a href={RESUME_DATA.github} target="_blank" rel="noopener noreferrer" className="btn-secondary flex items-center gap-2">
-              <Github className="w-4 h-4" />
-              GitHub
-            </a>
-          </motion.div>
+            <motion.div variants={fadeUp} className='flex flex-wrap gap-4'>
+              <a href='#projects' className='btn-primary'>
+                View Projects
+              </a>
+              <a 
+                href={`mailto:${RESUME_DATA.email}`}
+                className='btn-secondary'
+              >
+                Get in Touch
+              </a>
+            </motion.div>
+          </div>
 
-          {/* Stats */}
-          <motion.div 
-            variants={fadeInUp}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto"
-          >
-            {RESUME_DATA.stats.map((stat, index) => (
-              <div key={stat.label} className="glass-card rounded-xl p-4 text-center">
-                <div className="text-2xl md:text-3xl font-bold gradient-text">{stat.value}</div>
-                <div className="text-xs text-foreground-muted mt-1">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
-        </motion.div>
+          {/* Right - Stats & Info */}
+          <div className='lg:col-span-5'>
+            <motion.div 
+              variants={staggerContainer}
+              className='space-y-4'
+            >
+              {/* Quick Stats */}
+              <motion.div variants={fadeUp} className='card p-6'>
+                <div className='grid grid-cols-2 gap-6'>
+                  {RESUME_DATA.stats.slice(0, 4).map((stat) => (
+                    <div key={stat.label}>
+                      <div className='text-[32px] font-semibold tracking-[-0.021em]'>{stat.value}</div>
+                      <div className='text-xs text-[rgba(255,255,255,0.6)] uppercase tracking-wide mt-1'>
+                        {stat.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
 
-        {/* Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="w-6 h-10 border-2 border-border rounded-full flex justify-center pt-2"
-          >
-            <div className="w-1 h-2 bg-foreground-muted rounded-full" />
-          </motion.div>
+              {/* Location & Contact */}
+              <motion.div variants={fadeUp} className='card p-6 space-y-4'>
+                <div className='flex items-center gap-3 text-[rgba(255,255,255,0.8)]'>
+                  <MapPin className='w-4 h-4 text-[#0a84ff]' />
+                  <span className='text-sm'>{RESUME_DATA.location}</span>
+                </div>
+                <div className='flex items-center gap-3 text-[rgba(255,255,255,0.8)]'>
+                  <Mail className='w-4 h-4 text-[#0a84ff]' />
+                  <span className='text-sm'>{RESUME_DATA.email}</span>
+                </div>
+                <div className='flex gap-3 pt-2'>
+                  <a 
+                    href={RESUME_DATA.github}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='btn-ghost text-xs'
+                  >
+                    <Github className='w-4 h-4 mr-2' />
+                    GitHub
+                  </a>
+                  <a 
+                    href={RESUME_DATA.linkedin}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='btn-ghost text-xs'
+                  >
+                    <Linkedin className='w-4 h-4 mr-2' />
+                    LinkedIn
+                  </a>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>
   );
 }
 
-// Project Detail Modal
+// Project Modal - Detailed View
 function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+      className='fixed inset-0 z-50 bg-black/90 backdrop-blur-xl overflow-y-auto'
       onClick={onClose}
     >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto glass-card rounded-2xl p-6 md:p-8"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 p-2 hover:bg-background-tertiary rounded-lg transition-colors"
+      <div className='min-h-screen px-6 py-20'>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 40 }}
+          className='max-w-[900px] mx-auto'
+          onClick={(e) => e.stopPropagation()}
         >
-          <X className="w-5 h-5" />
-        </button>
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className='fixed top-6 right-6 w-10 h-10 flex items-center justify-center bg-[#2c2c2e] hover:bg-[#3a3a3c] transition-colors'
+          >
+            <X className='w-5 h-5' />
+          </button>
 
-        <div className="mb-6">
-          <div className="flex flex-wrap items-center gap-3 mb-3">
-            <span className="badge badge-primary">{project.category}</span>
-            <span className="badge badge-success">{project.status}</span>
-          </div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">{project.title}</h2>
-          <p className="text-foreground-muted">{project.shortDesc}</p>
-        </div>
-
-        {/* Highlights */}
-        <div className="grid grid-cols-3 gap-4 mb-8">
-          {project.highlights.map((highlight) => (
-            <div key={highlight.label} className="glass rounded-lg p-3 text-center">
-              <div className="text-xs text-foreground-muted mb-1">{highlight.label}</div>
-              <div className="text-sm font-semibold">{highlight.value}</div>
+          {/* Header */}
+          <div className='mb-12'>
+            <div className='flex flex-wrap gap-2 mb-4'>
+              <span className='tag tag-blue'>{project.category}</span>
+              <span className='tag tag-green'>{project.status}</span>
             </div>
-          ))}
-        </div>
+            <h2 className='text-[48px] lg:text-[64px] font-semibold leading-[1.05] tracking-[-0.021em] mb-4'>
+              {project.title}
+            </h2>
+            <p className='text-[21px] text-[rgba(255,255,255,0.6)] leading-[1.4]'>
+              {project.shortDesc}
+            </p>
+          </div>
 
-        {/* Description */}
-        <div className="mb-8">
-          <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-            <Zap className="w-5 h-5 text-yellow-500" />
-            Overview
-          </h3>
-          <p className="text-foreground-muted leading-relaxed whitespace-pre-line">
-            {project.fullDesc}
-          </p>
-        </div>
-
-        {/* Key Features */}
-        <div className="mb-8">
-          <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-purple-500" />
-            Key Features
-          </h3>
-          <ul className="space-y-2">
-            {project.keyFeatures.map((feature, index) => (
-              <li key={index} className="flex items-start gap-2 text-foreground-muted">
-                <ChevronRight className="w-4 h-4 text-accent-primary mt-1 shrink-0" />
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Architecture */}
-        <div className="mb-8">
-          <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-            <Workflow className="w-5 h-5 text-blue-500" />
-            Architecture
-          </h3>
-          <ul className="space-y-2">
-            {project.architecture.map((item, index) => (
-              <li key={index} className="flex items-start gap-2 text-foreground-muted">
-                <ChevronRight className="w-4 h-4 text-accent-secondary mt-1 shrink-0" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Tech Stack */}
-        <div className="mb-8">
-          <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-            <Code className="w-5 h-5 text-green-500" />
-            Technology Stack
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {project.tech.map((tech) => (
-              <span key={tech} className="badge">
-                {tech}
-              </span>
+          {/* Highlights Grid */}
+          <div className='grid grid-cols-3 gap-4 mb-12'>
+            {project.highlights.map((h) => (
+              <div key={h.label} className='card p-5 text-center'>
+                <div className='text-xs text-[rgba(255,255,255,0.6)] uppercase tracking-wide mb-2'>
+                  {h.label}
+                </div>
+                <div className='text-lg font-semibold text-[#0a84ff]'>{h.value}</div>
+              </div>
             ))}
           </div>
-        </div>
 
-        {/* GitHub Link */}
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-primary w-full flex items-center justify-center gap-2"
-        >
-          <Github className="w-5 h-5" />
-          View on GitHub
-          <ExternalLink className="w-4 h-4" />
-        </a>
-      </motion.div>
+          {/* Overview */}
+          <div className='mb-12'>
+            <h3 className='text-[24px] font-semibold mb-4 tracking-[-0.021em]'>Overview</h3>
+            <p className='text-[17px] text-[rgba(255,255,255,0.6)] leading-[1.6] whitespace-pre-line'>
+              {project.fullDesc}
+            </p>
+          </div>
+
+          {/* Two Column Layout */}
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12'>
+            {/* Key Features */}
+            <div className='card p-6'>
+              <h3 className='text-[18px] font-semibold mb-5 flex items-center gap-2 tracking-[-0.021em]'>
+                <Zap className='w-5 h-5 text-[#ff9f0a]' />
+                Key Features
+              </h3>
+              <ul className='space-y-3'>
+                {project.keyFeatures.map((feature, i) => (
+                  <li key={i} className='flex items-start gap-3 text-[15px] text-[rgba(255,255,255,0.8)] leading-[1.5]'>
+                    <ChevronRight className='w-4 h-4 text-[#0a84ff] mt-0.5 shrink-0' />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Architecture */}
+            <div className='card p-6'>
+              <h3 className='text-[18px] font-semibold mb-5 flex items-center gap-2 tracking-[-0.021em]'>
+                <Workflow className='w-5 h-5 text-[#5e5ce6]' />
+                Architecture
+              </h3>
+              <ul className='space-y-3'>
+                {project.architecture.map((item, i) => (
+                  <li key={i} className='flex items-start gap-3 text-[15px] text-[rgba(255,255,255,0.8)] leading-[1.5]'>
+                    <ChevronRight className='w-4 h-4 text-[#5e5ce6] mt-0.5 shrink-0' />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Technology Stack */}
+          <div className='mb-12'>
+            <h3 className='text-[18px] font-semibold mb-4 tracking-[-0.021em]'>Technology Stack</h3>
+            <div className='flex flex-wrap gap-2'>
+              {project.tech.map((tech) => (
+                <span key={tech} className='tag'>
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* GitHub Link */}
+          <a
+            href={project.github}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='btn-primary inline-flex items-center gap-2'
+          >
+            <Github className='w-5 h-5' />
+            View on GitHub
+            <ExternalLink className='w-4 h-4' />
+          </a>
+        </motion.div>
+      </div>
     </motion.div>
   );
 }
 
-// Project Card
-function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
+// Project Card - Bento Style
+function ProjectCard({ project, onClick, featured = false }: { project: Project; onClick: () => void; featured?: boolean }) {
+  if (featured) {
+    return (
+      <motion.div
+        variants={fadeUp}
+        className='card-interactive p-8 lg:col-span-2 cursor-pointer group'
+        onClick={onClick}
+      >
+        <div className='flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6'>
+          <div className='flex-1'>
+            <div className='flex gap-2 mb-4'>
+              <span className='tag tag-blue'>{project.category}</span>
+              <span className='tag tag-green'>{project.status}</span>
+            </div>
+            <h3 className='text-[28px] font-semibold mb-3 tracking-[-0.021em] group-hover:text-[#0a84ff] transition-colors'>
+              {project.title}
+            </h3>
+            <p className='text-[15px] text-[rgba(255,255,255,0.6)] leading-[1.5] mb-6 max-w-[600px]'>
+              {project.shortDesc}
+            </p>
+            <div className='flex flex-wrap gap-2'>
+              {project.tech.slice(0, 5).map((tech) => (
+                <span key={tech} className='tag text-xs'>{tech}</span>
+              ))}
+              {project.tech.length > 5 && (
+                <span className='tag text-xs'>+{project.tech.length - 5}</span>
+              )}
+            </div>
+          </div>
+          <div className='flex items-center gap-4 lg:flex-col lg:items-end'>
+            {project.highlights.map((h) => (
+              <div key={h.label} className='text-right'>
+                <div className='text-xs text-[rgba(255,255,255,0.6)] uppercase tracking-wide'>{h.label}</div>
+                <div className='text-lg font-semibold text-[#0a84ff]'>{h.value}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
-      variants={scaleIn}
-      className="glass-card rounded-xl p-6 card-hover cursor-pointer group"
+      variants={fadeUp}
+      className='card-interactive p-6 cursor-pointer group'
       onClick={onClick}
     >
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex gap-2">
-          <span className="badge badge-primary text-xs">{project.category}</span>
-          <span className="badge badge-success text-xs">{project.status}</span>
-        </div>
-        <ArrowUpRight className="w-5 h-5 text-foreground-muted group-hover:text-foreground transition-colors" />
+      <div className='flex gap-2 mb-4'>
+        <span className='tag tag-blue text-xs'>{project.category}</span>
       </div>
-
-      <h3 className="text-xl font-bold mb-2 group-hover:text-accent-primary transition-colors">
+      <h3 className='text-[21px] font-semibold mb-2 tracking-[-0.021em] group-hover:text-[#0a84ff] transition-colors'>
         {project.title}
       </h3>
-      <p className="text-sm text-foreground-muted mb-4 line-clamp-2">
+      <p className='text-[13px] text-[rgba(255,255,255,0.6)] leading-[1.4] mb-4'>
         {project.shortDesc}
       </p>
-
-      {/* Highlights */}
-      <div className="grid grid-cols-3 gap-2 mb-4">
-        {project.highlights.map((h) => (
-          <div key={h.label} className="text-center">
-            <div className="text-xs text-foreground-muted">{h.label}</div>
-            <div className="text-sm font-semibold">{h.value}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Tech Stack */}
-      <div className="flex flex-wrap gap-1.5">
+      <div className='flex flex-wrap gap-1.5'>
         {project.tech.slice(0, 4).map((tech) => (
-          <span key={tech} className="badge text-xs">
-            {tech}
-          </span>
+          <span key={tech} className='tag text-xs'>{tech}</span>
         ))}
-        {project.tech.length > 4 && (
-          <span className="badge text-xs">+{project.tech.length - 4}</span>
-        )}
       </div>
     </motion.div>
   );
 }
 
-// Projects Section
+// Projects Section - Bento Grid
 function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="py-24 relative">
-      <div className="absolute inset-0 dot-pattern opacity-30" />
-      
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id='projects' className='section-padding bg-[#0a0a0a]'>
+      <div className='max-w-[1200px] mx-auto px-6 lg:px-8'>
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, margin: '-100px' }}
           variants={staggerContainer}
         >
-          <motion.div variants={fadeInUp} className="text-center mb-16">
-            <span className="badge badge-primary mb-4">Portfolio</span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
-            <p className="text-foreground-muted max-w-2xl mx-auto">
-              A selection of my recent work, showcasing expertise in microservices, 
-              AI integration, and cloud architecture.
+          <motion.div variants={fadeUp} className='mb-16'>
+            <span className='tag tag-indigo mb-4'>Selected Work</span>
+            <h2 className='text-[48px] lg:text-[56px] font-semibold leading-[1.05] tracking-[-0.021em] mb-4'>
+              Projects
+            </h2>
+            <p className='text-[17px] text-[rgba(255,255,255,0.6)] max-w-[600px]'>
+              Distributed systems and infrastructure platforms designed for scale, reliability, and performance.
             </p>
           </motion.div>
 
+          {/* Bento Grid */}
           <motion.div 
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            className='grid grid-cols-1 lg:grid-cols-3 gap-4'
           >
-            {RESUME_DATA.projects.map((project) => (
+            {RESUME_DATA.projects.map((project, index) => (
               <ProjectCard
                 key={project.id}
                 project={project}
                 onClick={() => setSelectedProject(project)}
+                featured={index === 0}
               />
             ))}
           </motion.div>
         </motion.div>
       </div>
-
       <AnimatePresence>
         {selectedProject && (
           <ProjectModal
@@ -433,55 +460,127 @@ function ProjectsSection() {
   );
 }
 
-// Skills Section
+// Experience Section - Clean Timeline
+function ExperienceSection() {
+  return (
+    <section id='experience' className='section-padding'>
+      <div className='max-w-[1200px] mx-auto px-6 lg:px-8'>
+        <motion.div
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, margin: '-100px' }}
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeUp} className='mb-16'>
+            <span className='tag tag-indigo mb-4'>Career</span>
+            <h2 className='text-[48px] lg:text-[56px] font-semibold leading-[1.05] tracking-[-0.021em] mb-4'>
+              Experience
+            </h2>
+          </motion.div>
+
+          <div className='space-y-0'>
+            {RESUME_DATA.experience.map((exp, index) => (
+              <motion.div
+                key={exp.company}
+                variants={fadeUp}
+                className='group'
+              >
+                <div className={`py-8 ${index !== 0 ? 'border-t border-[rgba(255,255,255,0.1)]' : ''}`}>
+                  <div className='grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12'>
+                    {/* Date & Company */}
+                    <div className='lg:col-span-4'>
+                      <div className='text-xs text-[#0a84ff] font-medium uppercase tracking-wide mb-2'>
+                        {exp.period}
+                      </div>
+                      <h3 className='text-[24px] font-semibold tracking-[-0.021em] mb-1'>
+                        {exp.company}
+                      </h3>
+                      <p className='text-[15px] text-[rgba(255,255,255,0.6)]'>
+                        {exp.role}
+                      </p>
+                      <p className='text-xs text-[rgba(255,255,255,0.4)] mt-1'>
+                        {exp.location}
+                      </p>
+                    </div>
+
+                    {/* Responsibilities */}
+                    <div className='lg:col-span-8'>
+                      <ul className='space-y-3'>
+                        {exp.points.map((point, i) => (
+                          <li 
+                            key={i} 
+                            className='flex items-start gap-3 text-[15px] text-[rgba(255,255,255,0.8)] leading-[1.5]'
+                          >
+                            <ChevronRight className='w-4 h-4 text-[#0a84ff] mt-0.5 shrink-0' />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// Skills Section - Grid Layout
 function SkillsSection() {
   const skillCategories = [
-    { name: "Systems & Architecture", icon: Server, skills: RESUME_DATA.skills["Systems & Architecture"] },
-    { name: "Infrastructure & Platform", icon: Cloud, skills: RESUME_DATA.skills["Infrastructure & Platform"] },
-    { name: "Messaging & Streaming", icon: Workflow, skills: RESUME_DATA.skills["Messaging & Streaming"] },
-    { name: "Data & Storage", icon: Database, skills: RESUME_DATA.skills["Data & Storage"] },
-    { name: "Observability", icon: Globe, skills: RESUME_DATA.skills["Observability"] },
-    { name: "Languages & Runtimes", icon: Code, skills: RESUME_DATA.skills["Languages & Runtimes"] },
+    { name: 'Systems & Architecture', icon: Server, skills: RESUME_DATA.skills['Systems & Architecture'], color: '#0a84ff' },
+    { name: 'Infrastructure', icon: Cloud, skills: RESUME_DATA.skills['Infrastructure & Platform'], color: '#30d158' },
+    { name: 'Messaging', icon: Radio, skills: RESUME_DATA.skills['Messaging & Streaming'], color: '#5e5ce6' },
+    { name: 'Data & Storage', icon: Database, skills: RESUME_DATA.skills['Data & Storage'], color: '#ff9f0a' },
+    { name: 'Observability', icon: Activity, skills: RESUME_DATA.skills['Observability'], color: '#bf5af2' },
+    { name: 'Languages', icon: Terminal, skills: RESUME_DATA.skills['Languages & Runtimes'], color: '#64d2ff' },
   ];
 
   return (
-    <section id="skills" className="py-24 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className='section-padding bg-[#0a0a0a]'>
+      <div className='max-w-[1200px] mx-auto px-6 lg:px-8'>
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, margin: '-100px' }}
           variants={staggerContainer}
         >
-          <motion.div variants={fadeInUp} className="text-center mb-16">
-            <span className="badge badge-primary mb-4">Expertise</span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Technical Skills</h2>
-            <p className="text-foreground-muted max-w-2xl mx-auto">
-              Technologies and tools I use to build scalable, production-ready systems.
-            </p>
+          <motion.div variants={fadeUp} className='mb-16'>
+            <span className='tag tag-indigo mb-4'>Expertise</span>
+            <h2 className='text-[48px] lg:text-[56px] font-semibold leading-[1.05] tracking-[-0.021em] mb-4'>
+              Technical Skills
+            </h2>
           </motion.div>
 
           <motion.div 
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'
           >
             {skillCategories.map((category) => {
               const Icon = category.icon;
               return (
                 <motion.div
                   key={category.name}
-                  variants={scaleIn}
-                  className="glass-card rounded-xl p-6"
+                  variants={fadeUp}
+                  className='card p-6'
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-accent-primary/10 rounded-lg">
-                      <Icon className="w-5 h-5 text-accent-primary" />
+                  <div className='flex items-center gap-3 mb-5'>
+                    <div 
+                      className='w-10 h-10 flex items-center justify-center'
+                      style={{ backgroundColor: `${category.color}15` }}
+                    >
+                      <Icon className='w-5 h-5' style={{ color: category.color }} />
                     </div>
-                    <h3 className="font-semibold">{category.name}</h3>
+                    <h3 className='text-[17px] font-semibold tracking-[-0.021em]'>
+                      {category.name}
+                    </h3>
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className='flex flex-wrap gap-2'>
                     {category.skills.map((skill) => (
-                      <span key={skill} className="badge">
+                      <span key={skill} className='tag text-xs'>
                         {skill}
                       </span>
                     ))}
@@ -496,156 +595,79 @@ function SkillsSection() {
   );
 }
 
-// Experience Section
-function ExperienceSection() {
-  return (
-    <section id="experience" className="py-24 relative">
-      <div className="absolute inset-0 grid-pattern opacity-30" />
-      
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-        >
-          <motion.div variants={fadeInUp} className="text-center mb-16">
-            <span className="badge badge-primary mb-4">Career</span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Work Experience</h2>
-            <p className="text-foreground-muted max-w-2xl mx-auto">
-              My professional journey building production systems and leading development teams.
-            </p>
-          </motion.div>
-
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent-primary via-accent-secondary to-transparent transform md:-translate-x-1/2" />
-
-            {RESUME_DATA.experience.map((exp, index) => (
-              <motion.div
-                key={exp.company}
-                variants={fadeInUp}
-                className={`relative flex flex-col md:flex-row gap-8 mb-12 ${
-                  index % 2 === 0 ? "md:flex-row-reverse" : ""
-                }`}
-              >
-                {/* Timeline Dot */}
-                <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-accent-primary rounded-full border-4 border-background transform -translate-x-1/2 mt-1.5" />
-
-                {/* Content */}
-                <div className={`ml-8 md:ml-0 md:w-1/2 ${
-                  index % 2 === 0 ? "md:pl-12" : "md:pr-12 md:text-right"
-                }`}>
-                  <div className="glass-card rounded-xl p-6">
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <span className="text-xs font-semibold text-accent-primary">
-                        {exp.period}
-                      </span>
-                      {exp.location && (
-                        <span className="text-xs text-foreground-muted">
-                          • {exp.location}
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="text-lg font-bold mb-1">{exp.company}</h3>
-                    <p className="text-sm text-foreground-muted mb-4">{exp.role}</p>
-                    <ul className="space-y-2">
-                      {exp.points.map((point, i) => (
-                        <li 
-                          key={i} 
-                          className={`text-sm text-foreground-muted flex gap-2 ${
-                            index % 2 === 0 ? "" : "md:flex-row-reverse md:text-right"
-                          }`}
-                        >
-                          <ChevronRight className="w-4 h-4 text-accent-primary shrink-0 md:order-1" />
-                          <span className="md:order-2">{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Empty space for other side */}
-                <div className="hidden md:block md:w-1/2" />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
 // Contact Section
 function ContactSection() {
   return (
-    <section id="contact" className="py-24 relative">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id='contact' className='section-padding'>
+      <div className='max-w-[1200px] mx-auto px-6 lg:px-8'>
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, margin: '-100px' }}
           variants={staggerContainer}
         >
-          <motion.div variants={fadeInUp} className="text-center mb-12">
-            <span className="badge badge-primary mb-4">Get in Touch</span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Let's Work Together</h2>
-            <p className="text-foreground-muted max-w-2xl mx-auto">
-              I'm always interested in hearing about new projects and opportunities. 
-              Whether you have a question or just want to say hi, feel free to reach out.
+          <motion.div variants={fadeUp} className='text-center mb-16'>
+            <span className='tag tag-indigo mb-4'>Contact</span>
+            <h2 className='text-[48px] lg:text-[56px] font-semibold leading-[1.05] tracking-[-0.021em] mb-4'>
+              Get in Touch
+            </h2>
+            <p className='text-[17px] text-[rgba(255,255,255,0.6)] max-w-[500px] mx-auto'>
+              Available for system architecture consulting and infrastructure engineering opportunities.
             </p>
           </motion.div>
 
           <motion.div 
-            variants={fadeInUp}
-            className="glass-card rounded-2xl p-8 md:p-12"
+            variants={fadeUp}
+            className='max-w-[800px] mx-auto'
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <a 
-                href={`mailto:${RESUME_DATA.email}`}
-                className="flex flex-col items-center text-center group"
-              >
-                <div className="w-14 h-14 bg-accent-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent-primary/20 transition-colors">
-                  <Mail className="w-6 h-6 text-accent-primary" />
-                </div>
-                <h3 className="font-semibold mb-1">Email</h3>
-                <p className="text-sm text-foreground-muted">{RESUME_DATA.email}</p>
-              </a>
+            <div className='card p-8 lg:p-12'>
+              <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-12'>
+                <a 
+                  href={`mailto:${RESUME_DATA.email}`}
+                  className='text-center group'
+                >
+                  <div className='w-12 h-12 mx-auto mb-4 flex items-center justify-center bg-[#0a84ff]/10 group-hover:bg-[#0a84ff]/20 transition-colors'>
+                    <Mail className='w-5 h-5 text-[#0a84ff]' />
+                  </div>
+                  <div className='text-[15px] font-medium mb-1'>Email</div>
+                  <div className='text-[13px] text-[rgba(255,255,255,0.6)]'>{RESUME_DATA.email}</div>
+                </a>
 
-              <a 
-                href={`tel:${RESUME_DATA.phone}`}
-                className="flex flex-col items-center text-center group"
-              >
-                <div className="w-14 h-14 bg-accent-secondary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent-secondary/20 transition-colors">
-                  <Phone className="w-6 h-6 text-accent-secondary" />
-                </div>
-                <h3 className="font-semibold mb-1">Phone</h3>
-                <p className="text-sm text-foreground-muted">{RESUME_DATA.phone}</p>
-              </a>
+                <a 
+                  href={`tel:${RESUME_DATA.phone}`}
+                  className='text-center group'
+                >
+                  <div className='w-12 h-12 mx-auto mb-4 flex items-center justify-center bg-[#30d158]/10 group-hover:bg-[#30d158]/20 transition-colors'>
+                    <Phone className='w-5 h-5 text-[#30d158]' />
+                  </div>
+                  <div className='text-[15px] font-medium mb-1'>Phone</div>
+                  <div className='text-[13px] text-[rgba(255,255,255,0.6)]'>{RESUME_DATA.phone}</div>
+                </a>
 
-              <a 
-                href={RESUME_DATA.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center text-center group"
-              >
-                <div className="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-500/20 transition-colors">
-                  <Linkedin className="w-6 h-6 text-blue-500" />
-                </div>
-                <h3 className="font-semibold mb-1">LinkedIn</h3>
-                <p className="text-sm text-foreground-muted">Connect with me</p>
-              </a>
-            </div>
+                <a 
+                  href={RESUME_DATA.linkedin}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='text-center group'
+                >
+                  <div className='w-12 h-12 mx-auto mb-4 flex items-center justify-center bg-[#5e5ce6]/10 group-hover:bg-[#5e5ce6]/20 transition-colors'>
+                    <Linkedin className='w-5 h-5 text-[#5e5ce6]' />
+                  </div>
+                  <div className='text-[15px] font-medium mb-1'>LinkedIn</div>
+                  <div className='text-[13px] text-[rgba(255,255,255,0.6)]'>Connect</div>
+                </a>
+              </div>
 
-            <div className="mt-12 pt-8 border-t border-border">
-              <a 
-                href={`mailto:${RESUME_DATA.email}?subject=Let's work together`}
-                className="btn-primary w-full flex items-center justify-center gap-2 text-lg py-4"
-              >
-                <Mail className="w-5 h-5" />
-                Send me an email
-                <ArrowUpRight className="w-5 h-5" />
-              </a>
+              <div className='border-t border-[rgba(255,255,255,0.1)] pt-8'>
+                <a 
+                  href={`mailto:${RESUME_DATA.email}?subject=System Engineering Inquiry`}
+                  className='btn-primary w-full flex items-center justify-center gap-2'
+                >
+                  <Mail className='w-4 h-4' />
+                  Start a Conversation
+                  <ArrowUpRight className='w-4 h-4' />
+                </a>
+              </div>
             </div>
           </motion.div>
         </motion.div>
@@ -657,28 +679,28 @@ function ContactSection() {
 // Footer
 function Footer() {
   return (
-    <footer className="py-8 border-t border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-sm text-foreground-muted">
-            © {new Date().getFullYear()} Leul Melkamu Bezabih. All rights reserved.
+    <footer className='py-8 border-t border-[rgba(255,255,255,0.1)]'>
+      <div className='max-w-[1200px] mx-auto px-6 lg:px-8'>
+        <div className='flex flex-col md:flex-row items-center justify-between gap-4'>
+          <div className='text-[13px] text-[rgba(255,255,255,0.6)]'>
+            {new Date().getFullYear()} Leul Melkamu Bezabih
           </div>
-          <div className="flex items-center gap-4">
+          <div className='flex items-center gap-6'>
             <a 
               href={RESUME_DATA.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground-muted hover:text-foreground transition-colors"
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-[rgba(255,255,255,0.6)] hover:text-white transition-colors'
             >
-              <Github className="w-5 h-5" />
+              <Github className='w-5 h-5' />
             </a>
             <a 
               href={RESUME_DATA.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground-muted hover:text-foreground transition-colors"
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-[rgba(255,255,255,0.6)] hover:text-white transition-colors'
             >
-              <Linkedin className="w-5 h-5" />
+              <Linkedin className='w-5 h-5' />
             </a>
           </div>
         </div>
@@ -690,15 +712,12 @@ function Footer() {
 // Main Page
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className='min-h-screen bg-black'>
       <Navigation />
       <HeroSection />
       <ProjectsSection />
-      <div className="section-divider" />
       <SkillsSection />
-      <div className="section-divider" />
       <ExperienceSection />
-      <div className="section-divider" />
       <ContactSection />
       <Footer />
     </div>
