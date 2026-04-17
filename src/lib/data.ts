@@ -113,168 +113,168 @@ Experienced in building self-healing systems with automated failover, circuit br
     {
       id: "safestatus",
       title: "SafeStatusNotifier",
-      shortDesc: "Distributed real-time telemetry platform with GraphQL federation",
-      fullDesc: `A distributed device telemetry and presence platform designed for real-time status synchronization across mobile and backend nodes. Implements eventual consistency patterns for device state replication with conflict-free resolution.
+      shortDesc: "Real-time status sharing app for families and close contacts",
+      fullDesc: `A mobile application that lets users share their real-time status and location with family members and trusted contacts. Users can set custom status messages, share their live location during trips, and receive notifications when contacts update their status or arrive at destinations.
 
-The system architecture emphasizes data sovereignty and privacy-through-design, implementing attribute-based access control (ABAC) for fine-grained permission management. All telemetry data flows through authenticated channels with end-to-end encryption guarantees.`,
+Built with privacy as a priority - users have full control over who can see their status and for how long. The app uses a modern backend with GraphQL APIs to efficiently fetch and update status data in real-time.`,
       keyFeatures: [
-        "GraphQL federated API gateway with schema stitching for service composition",
-        "Real-time presence detection using heartbeat mechanisms and timeout-based failure detection",
-        "ABAC authorization model with relationship-based access control (ReBAC)",
-        "Event-driven notification pipeline with delivery guarantees and retry logic",
-        "PostgreSQL with row-level security policies for multi-tenant data isolation",
-        "Containerized deployment with health checks and graceful shutdown handling"
+        "Real-time status updates shared with approved contacts only",
+        "Live location sharing during trips with automatic arrival detection",
+        "Custom status messages with emoji support and expiration times",
+        "Push notifications for contact status changes and location arrivals",
+        "Granular privacy controls - choose who sees what information",
+        "Offline mode with sync when connection is restored"
       ],
       architecture: [
-        "Domain-driven design with bounded contexts for user, device, and access management",
-        "GraphQL schema federation for cross-service data aggregation",
-        "JWT-based authentication with RS256 asymmetric signing",
-        "PostgreSQL 14+ with read replicas and connection pooling (HikariCP)",
-        "Multi-stage Docker builds with distroless base images",
-        "Infrastructure as Code with environment-specific configuration management"
+        "Spring Boot backend with GraphQL APIs for efficient data fetching",
+        "JWT authentication with secure token storage on mobile devices",
+        "PostgreSQL database for user data and status history",
+        "FCM (Firebase Cloud Messaging) for push notifications",
+        "Docker containerization for consistent deployments",
+        "Mobile app built with Flutter for cross-platform support"
       ],
-      tech: ["Spring Boot", "GraphQL", "PostgreSQL", "JWT", "Docker", "Java 21"],
+      tech: ["Spring Boot", "GraphQL", "PostgreSQL", "Flutter", "Firebase", "Docker"],
       github: "https://github.com/Leul120/notifier",
-      category: "Distributed Systems",
+      category: "Mobile + Backend",
       status: "Production",
       highlights: [
-        { label: "API Pattern", value: "GraphQL Federation" },
-        { label: "Auth Model", value: "ABAC / ReBAC" },
-        { label: "Consistency", value: "Eventual" }
+        { label: "Platform", value: "Cross-Platform" },
+        { label: "Focus", value: "Privacy-First" },
+        { label: "Stack", value: "Spring + Flutter" }
       ]
     },
     {
       id: "interview",
       title: "Interview Trainer Platform",
-      shortDesc: "Multi-tenant video streaming platform with service mesh architecture",
-      fullDesc: `A distributed video communication platform built on service mesh principles, handling real-time media streaming, AI-driven analysis, and multi-party session coordination. The system implements backpressure handling and circuit breakers for resilient third-party integrations.
+      shortDesc: "AI-powered interview practice platform with video calls and feedback",
+      fullDesc: `A web platform that helps job seekers practice technical and behavioral interviews through simulated sessions. Users can join video-based mock interviews with AI-generated questions tailored to their target role and experience level.
 
-Architected for horizontal scalability with event sourcing for session state management and CQRS for read-heavy analytics workloads. Implements sophisticated load balancing strategies for geographic distribution of media servers.`,
+The platform supports multiple interview formats - solo practice with recorded responses, peer-to-peer mock interviews, and AI-evaluated sessions with detailed feedback on communication skills, technical accuracy, and answer structure. Includes a question bank organized by company, role, and difficulty level.`,
       keyFeatures: [
-        "Service mesh with Eureka discovery, client-side load balancing, and intelligent routing",
-        "Event-sourced session management with Apache Kafka for state replication",
-        "CQRS pattern separating command and query responsibilities for analytics",
-        "WebSocket gateway with connection pooling and heartbeat-based health checks",
-        "AI pipeline integration with Gemini for asynchronous question generation and scoring",
-        "Multi-tenant data isolation with schema-per-tenant database strategy"
+        "Live video interviews with built-in recording and playback",
+        "AI-generated questions based on job role and company",
+        "Automated feedback on answer quality using Gemini API",
+        "Question bank with filtering by category, difficulty, and company",
+        "Interview scheduling and calendar integration",
+        "Performance tracking with progress analytics over time"
       ],
       architecture: [
-        "Spring Cloud Gateway with rate limiting and request/response transformation",
-        "Netflix OSS stack: Eureka (service discovery), Ribbon (load balancing), Hystrix (circuit breakers)",
-        "Kafka cluster with topic partitioning for horizontal scaling of event consumers",
-        "R2DBC for non-blocking database access with backpressure handling",
-        "Redis Cluster for distributed session state and real-time presence",
-        "LiveKit SFU for selective forwarding unit-based video routing"
+        "Spring Boot monolith with clear module separation",
+        "LiveKit for WebRTC video streaming and recording",
+        "WebSocket connections for real-time session signaling",
+        "PostgreSQL for user data, questions, and session history",
+        "Redis for session state and temporary caching",
+        "Gemini API integration for question generation and evaluation"
       ],
-      tech: ["Spring Boot", "Spring Cloud", "Kafka", "Redis Cluster", "WebSocket", "LiveKit", "R2DBC"],
+      tech: ["Spring Boot", "LiveKit", "WebSocket", "PostgreSQL", "Redis", "React"],
       github: "https://github.com/Leul120/interview-trainer",
-      category: "Service Mesh Platform",
+      category: "EdTech Platform",
       status: "Production",
       highlights: [
-        { label: "Architecture", value: "Service Mesh" },
-        { label: "Pattern", value: "Event Sourcing + CQRS" },
-        { label: "Scaling", value: "Horizontal" }
+        { label: "Type", value: "EdTech" },
+        { label: "Feature", value: "AI Feedback" },
+        { label: "Video", value: "WebRTC" }
       ]
     },
     {
       id: "comparewise",
       title: "CompareWise",
-      shortDesc: "Multi-model data platform with AI-driven ranking engine",
-      fullDesc: `A polyglot persistence platform implementing multiple database models for optimal data representation: relational for structured data, document for flexible schemas, and cache for real-time rankings. The system uses distributed transaction patterns for cross-model consistency.
+      shortDesc: "Product comparison app with AI recommendations and price tracking",
+      fullDesc: `A mobile application that helps users make informed purchasing decisions by comparing products side-by-side across multiple retailers. Users can create comparison lists, track price history, and receive AI-powered recommendations based on their preferences and budget.
 
-Implements sophisticated caching strategies including read-through, write-behind, and cache-aside patterns. AI integration follows the ambassador pattern for resilient external service communication with fallback mechanisms.`,
+The app aggregates product data from various sources and presents it in an easy-to-scan format with key specifications, user reviews, and price comparisons. Users can set price alerts and get notified when products drop to their target price.`,
       keyFeatures: [
-        "Polyglot persistence with PostgreSQL (relational) and Redis (cache/graph)",
-        "Distributed caching with cache warming, eviction policies, and consistency patterns",
-        "AI ambassador pattern with circuit breakers for Gemini API integration",
-        "Offline-first synchronization using CRDTs for conflict resolution",
-        "Weighted scoring engine with pluggable algorithm selection (AHP, TOPSIS)",
-        "Multi-tenant resource isolation with quota management and rate limiting"
+        "Side-by-side product comparison with specification highlighting",
+        "AI-powered product recommendations based on user preferences",
+        "Price history charts and price drop alerts",
+        "Saved comparison lists for future reference",
+        "Product scanning via barcode for instant price lookup",
+        "User reviews aggregation from multiple sources"
       ],
       architecture: [
-        "Layered architecture with domain, application, and infrastructure separation",
-        "Spring Data JPA with Hibernate second-level caching (Ehcache)",
-        "Redis data structures (Sorted Sets for rankings, Hashes for objects)",
-        "JWT token rotation with refresh token binding and device fingerprinting",
-        "CDC (Change Data Capture) pattern for cache invalidation",
-        "Blue-green deployment with database migration rollback strategies"
+        "Spring Boot REST API with PostgreSQL for product and user data",
+        "Redis caching layer for frequently accessed product information",
+        "Flutter mobile app with offline support for saved comparisons",
+        "Background jobs for price tracking and alert notifications",
+        "Gemini API for natural language product analysis",
+        "Third-party retailer APIs for price aggregation"
       ],
-      tech: ["Spring Boot", "PostgreSQL", "Redis", "Flutter", "CRDTs", "CDC"],
+      tech: ["Spring Boot", "PostgreSQL", "Redis", "Flutter", "Gemini API"],
       github: "https://github.com/Leul120/comparewise",
-      category: "Polyglot Platform",
+      category: "Consumer App",
       status: "Production",
       highlights: [
-        { label: "Pattern", value: "Polyglot Persistence" },
-        { label: "Sync", value: "CRDT-based" },
-        { label: "Caching", value: "Multi-tier" }
+        { label: "Type", value: "Mobile App" },
+        { label: "Feature", value: "AI Recommendations" },
+        { label: "Utility", value: "Price Tracking" }
       ]
     },
     {
       id: "transport",
       title: "Transport Allocation System",
-      shortDesc: "Edge-compute IoT platform with stream processing and consensus",
-      fullDesc: `An intelligent transport orchestration system implementing edge computing patterns for real-time computer vision processing. The architecture follows the Lambda pattern with separate speed and batch layers for different processing requirements.
+      shortDesc: "Fleet management and vehicle dispatch platform for logistics",
+      fullDesc: `A comprehensive fleet management system designed for logistics companies to track vehicles, optimize routes, and manage driver assignments. Dispatchers can view real-time vehicle locations on a map, assign trips based on proximity and availability, and track delivery progress.
 
-Implements distributed consensus for vehicle allocation decisions using weighted scoring algorithms. The system handles network partitions gracefully with CRDT-based state synchronization and automatic conflict resolution when connectivity restores.`,
+The system includes driver mobile apps for receiving assignments, updating status, and communicating with dispatch. Features automated route optimization considering traffic, vehicle capacity, and delivery time windows. Managers can generate reports on fleet utilization, driver performance, and operational costs.`,
       keyFeatures: [
-        "Edge computing architecture with frame preprocessing at camera nodes",
-        "Lambda architecture with Kafka Streams (speed layer) and batch analytics",
-        "Distributed consensus algorithm for vehicle allocation with conflict resolution",
-        "CRDT-based state synchronization for partition tolerance",
-        "WebSocket clustering with Redis pub/sub for horizontal scaling of connections",
-        "Circuit breakers and bulkheads for AWS Rekognition API protection"
+        "Real-time GPS tracking of fleet vehicles on interactive map",
+        "Automated vehicle allocation based on proximity and availability",
+        "Driver mobile app for trip assignments and status updates",
+        "Route optimization considering traffic and delivery windows",
+        "Delivery confirmation with photo capture and digital signature",
+        "Analytics dashboard with fleet utilization and performance metrics"
       ],
       architecture: [
-        "Spring Boot with WebFlux for non-blocking I/O handling of camera streams",
-        "JavaCV with FFmpeg for hardware-accelerated frame extraction",
-        "Kafka Connect for integrating camera feeds with processing pipeline",
-        "MySQL with partitioning for time-series telemetry data",
-        "Saga pattern for distributed allocation transaction coordination",
-        "AWS IoT Core for device management and shadow state synchronization"
+        "Spring Boot backend with WebSocket for real-time location updates",
+        "MySQL database for trips, vehicles, drivers, and delivery records",
+        "Redis for caching active trip data and driver locations",
+        "Mobile apps built with Flutter for driver and dispatcher interfaces",
+        "Google Maps API for routing and geolocation services",
+        "Apache Kafka for processing location stream and event logging"
       ],
-      tech: ["Spring Boot", "Kafka Streams", "AWS Rekognition", "WebFlux", "CRDTs", "Saga Pattern"],
+      tech: ["Spring Boot", "MySQL", "Redis", "Flutter", "WebSocket", "Kafka"],
       github: "https://github.com/Leul120/transport-allocation-system",
-      category: "Edge Computing Platform",
+      category: "Fleet Management",
       status: "Production",
       highlights: [
-        { label: "Pattern", value: "Lambda Architecture" },
-        { label: "Consensus", value: "Weighted Scoring" },
-        { label: "Resilience", value: "CRDT + Saga" }
+        { label: "Type", value: "Logistics" },
+        { label: "Feature", value: "Real-time Tracking" },
+        { label: "Platform", value: "Web + Mobile" }
       ]
     },
     {
       id: "cosmetics",
       title: "Cosmetics E-commerce",
-      shortDesc: "Full-stack e-commerce platform with real-time payments and media management",
-      fullDesc: `A production-ready cosmetics e-commerce platform built with the MERN stack. Features a complete shopping experience from product discovery to payment processing.
+      shortDesc: "Online beauty store with product catalog, cart, and secure checkout",
+      fullDesc: `A complete online cosmetics store with a modern shopping experience. Customers can browse products by category, view detailed product pages with images, add items to cart, and complete secure checkout with multiple payment options.
 
-The architecture separates client and server concerns with a React SPA frontend and RESTful Express API backend. Implements secure JWT-based authentication alongside Google OAuth for flexible user onboarding. Payment processing integrated with Chapa for regional transaction support.`,
+The platform includes an admin panel for managing inventory, processing orders, and tracking sales. Features customer reviews and ratings to help shoppers make informed decisions. Supports both guest checkout and registered user accounts with order history.`,
       keyFeatures: [
-        "Product catalog with multi-category filtering and search",
-        "Cloudinary-integrated media management with Multer uploads",
-        "JWT + Google OAuth dual authentication system",
-        "Chapa payment integration with server-side transaction handling",
-        "Real-time order updates via WebSocket (port 9000)",
-        "Role-based admin dashboard for inventory and order management",
-        "User review and rating system for products"
+        "Product catalog with category browsing and search functionality",
+        "Shopping cart with quantity management and price calculations",
+        "Secure checkout flow with Chapa payment integration",
+        "User accounts with order history and saved addresses",
+        "Product reviews and star ratings from verified customers",
+        "Admin dashboard for inventory, orders, and sales analytics",
+        "Image gallery with Cloudinary for fast media delivery"
       ],
       architecture: [
-        "React SPA with Ant Design component library and TailwindCSS utilities",
-        "Express.js REST API with Mongoose ODM for MongoDB",
-        "JWT middleware for protected route authorization",
-        "Cloudinary SDK for image upload and transformation pipeline",
-        "Chapa API integration for payment initialization and verification",
-        "Socket.io for real-time order status broadcasting",
-        "CORS configured for cross-origin development environment"
+        "React frontend with Ant Design components and TailwindCSS styling",
+        "Node.js/Express REST API with modular route structure",
+        "MongoDB with Mongoose for product, user, and order data",
+        "JWT authentication with refresh tokens for session management",
+        "Cloudinary integration for image uploads and transformations",
+        "Chapa API for payment processing and transaction verification",
+        "Socket.io for real-time order status notifications"
       ],
       tech: ["React", "Node.js", "Express", "MongoDB", "Cloudinary", "Socket.io", "JWT"],
       github: "https://github.com/Leul120/cosmetics-ecommerce",
-      category: "Full-Stack E-commerce",
+      category: "E-commerce",
       status: "Production",
       highlights: [
-        { label: "Stack", value: "MERN" },
+        { label: "Type", value: "E-commerce" },
         { label: "Payments", value: "Chapa" },
-        { label: "Media", value: "Cloudinary" }
+        { label: "Admin", value: "Dashboard" }
       ]
     }
   ]
