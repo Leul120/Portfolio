@@ -103,6 +103,12 @@ Experienced in building self-healing systems with automated failover, circuit br
     "Languages & Runtimes": ["Java", "Python", "Go", "Node.js", "Spring Boot", "FastAPI"]
   },
 
+  education: {
+    institution: "Addis Ababa University",
+    degree: "Computer Science",
+    location: "Addis Ababa"
+  },
+
   projects: [
     {
       id: "safestatus",

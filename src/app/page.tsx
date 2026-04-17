@@ -52,6 +52,7 @@ function Navigation() {
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
+    { name: 'Education', href: '#education' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -627,6 +628,44 @@ function SkillsSection() {
   );
 }
 
+// Education Section
+function EducationSection() {
+  return (
+    <section id='education' className='section-padding bg-[#0a0a0a]'>
+      <div className='max-w-[1200px] mx-auto px-6 lg:px-8'>
+        <motion.div
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, margin: '-100px' }}
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeUp} className='mb-12'>
+            <h2 className='text-eyebrow mb-3'>Education</h2>
+            <h3 className='text-headline'>Academic Background</h3>
+          </motion.div>
+
+          <motion.div variants={fadeUp}>
+            <div className='card p-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6'>
+              <div>
+                <h4 className='text-[24px] font-semibold tracking-[-0.021em] mb-2'>
+                  {RESUME_DATA.education.institution}
+                </h4>
+                <p className='text-[17px] text-[rgba(255,255,255,0.6)]'>
+                  {RESUME_DATA.education.degree}
+                </p>
+              </div>
+              <div className='flex items-center gap-2 text-[15px] text-[rgba(255,255,255,0.5)]'>
+                <MapPin className='w-4 h-4' />
+                {RESUME_DATA.education.location}
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 // Contact Section
 function ContactSection() {
   return (
@@ -750,6 +789,7 @@ export default function Home() {
       <ProjectsSection />
       <SkillsSection />
       <ExperienceSection />
+      <EducationSection />
       <ContactSection />
       <Footer />
     </div>
