@@ -381,6 +381,14 @@ function ProjectCard({ project, onClick, featured = false }: { project: Project;
             ))}
           </div>
         </div>
+        <div className='mt-6 pt-4 border-t border-[rgba(255,255,255,0.1)] flex items-center justify-between'>
+          <span className='text-[13px] text-[rgba(255,255,255,0.6)] group-hover:text-[#0a84ff] transition-colors'>
+            Click to view details
+          </span>
+          <span className='text-[13px] font-medium text-[#0a84ff] opacity-0 group-hover:opacity-100 transition-opacity'>
+            View Project →
+          </span>
+        </div>
       </motion.div>
     );
   }
@@ -388,22 +396,30 @@ function ProjectCard({ project, onClick, featured = false }: { project: Project;
   return (
     <motion.div
       variants={fadeUp}
-      className='card-interactive p-6 cursor-pointer group'
+      className='card-interactive p-6 cursor-pointer group flex flex-col h-full'
       onClick={onClick}
     >
-      <div className='flex gap-2 mb-4'>
-        <span className='tag tag-blue text-xs'>{project.category}</span>
+      <div className='flex-1'>
+        <div className='flex gap-2 mb-4'>
+          <span className='tag tag-blue text-xs'>{project.category}</span>
+        </div>
+        <h3 className='text-[21px] font-semibold mb-2 tracking-[-0.021em] group-hover:text-[#0a84ff] transition-colors'>
+          {project.title}
+        </h3>
+        <p className='text-[13px] text-[rgba(255,255,255,0.6)] leading-[1.4] mb-4'>
+          {project.shortDesc}
+        </p>
+        <div className='flex flex-wrap gap-1.5'>
+          {project.tech.slice(0, 4).map((tech) => (
+            <span key={tech} className='tag text-xs'>{tech}</span>
+          ))}
+        </div>
       </div>
-      <h3 className='text-[21px] font-semibold mb-2 tracking-[-0.021em] group-hover:text-[#0a84ff] transition-colors'>
-        {project.title}
-      </h3>
-      <p className='text-[13px] text-[rgba(255,255,255,0.6)] leading-[1.4] mb-4'>
-        {project.shortDesc}
-      </p>
-      <div className='flex flex-wrap gap-1.5'>
-        {project.tech.slice(0, 4).map((tech) => (
-          <span key={tech} className='tag text-xs'>{tech}</span>
-        ))}
+      <div className='mt-4 pt-4 border-t border-[rgba(255,255,255,0.1)]'>
+        <span className='text-[12px] text-[rgba(255,255,255,0.5)] group-hover:text-[#0a84ff] transition-colors flex items-center gap-1'>
+          View details
+          <span className='inline-block transition-transform group-hover:translate-x-1'>→</span>
+        </span>
       </div>
     </motion.div>
   );

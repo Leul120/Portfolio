@@ -146,11 +146,33 @@ body {
   border: 1px solid var(--border);
   transition: all 0.2s ease;
   cursor: pointer;
+  position: relative;
 }
 
 .card-interactive:hover {
   background: var(--background-secondary);
   border-color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+.card-interactive::after {
+  content: '';
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--foreground-tertiary);
+  border-right: 2px solid var(--foreground-tertiary);
+  transform: rotate(45deg);
+  transition: all 0.2s ease;
+  opacity: 0.5;
+}
+
+.card-interactive:hover::after {
+  border-color: var(--accent-blue);
+  opacity: 1;
+  transform: rotate(45deg) translate(2px, -2px);
 }
 
 /* Button Styles - Apple */

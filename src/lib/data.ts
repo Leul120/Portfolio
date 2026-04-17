@@ -232,6 +232,41 @@ Implements distributed consensus for vehicle allocation decisions using weighted
         { label: "Consensus", value: "Weighted Scoring" },
         { label: "Resilience", value: "CRDT + Saga" }
       ]
+    },
+    {
+      id: "cosmetics",
+      title: "Cosmetics E-commerce",
+      shortDesc: "Full-stack e-commerce platform with real-time payments and media management",
+      fullDesc: `A production-ready cosmetics e-commerce platform built with the MERN stack. Features a complete shopping experience from product discovery to payment processing.
+
+The architecture separates client and server concerns with a React SPA frontend and RESTful Express API backend. Implements secure JWT-based authentication alongside Google OAuth for flexible user onboarding. Payment processing integrated with Chapa for regional transaction support.`,
+      keyFeatures: [
+        "Product catalog with multi-category filtering and search",
+        "Cloudinary-integrated media management with Multer uploads",
+        "JWT + Google OAuth dual authentication system",
+        "Chapa payment integration with server-side transaction handling",
+        "Real-time order updates via WebSocket (port 9000)",
+        "Role-based admin dashboard for inventory and order management",
+        "User review and rating system for products"
+      ],
+      architecture: [
+        "React SPA with Ant Design component library and TailwindCSS utilities",
+        "Express.js REST API with Mongoose ODM for MongoDB",
+        "JWT middleware for protected route authorization",
+        "Cloudinary SDK for image upload and transformation pipeline",
+        "Chapa API integration for payment initialization and verification",
+        "Socket.io for real-time order status broadcasting",
+        "CORS configured for cross-origin development environment"
+      ],
+      tech: ["React", "Node.js", "Express", "MongoDB", "Cloudinary", "Socket.io", "JWT"],
+      github: "https://github.com/Leul120/cosmetics-ecommerce",
+      category: "Full-Stack E-commerce",
+      status: "Production",
+      highlights: [
+        { label: "Stack", value: "MERN" },
+        { label: "Payments", value: "Chapa" },
+        { label: "Media", value: "Cloudinary" }
+      ]
     }
   ]
 };
