@@ -112,8 +112,12 @@ function Navigation() {
 // Hero Section - Apple Style
 function HeroSection() {
   return (
-    <section id='about' className='min-h-screen flex items-center pt-12'>
-      <div className='max-w-[1200px] mx-auto px-6 lg:px-8 w-full'>
+    <section id='about' className='min-h-screen flex items-center pt-12 relative overflow-hidden'>
+      {/* Dot grid background */}
+      <div className='absolute inset-0 pointer-events-none' style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.028) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+      {/* Blue ambient glow */}
+      <div className='absolute -top-32 -left-48 w-[700px] h-[600px] pointer-events-none' style={{ background: 'radial-gradient(ellipse, rgba(10, 132, 255, 0.07) 0%, transparent 65%)' }} />
+      <div className='relative z-10 max-w-[1200px] mx-auto px-6 lg:px-8 w-full'>
         <motion.div
           initial='hidden'
           animate='visible'
@@ -123,7 +127,7 @@ function HeroSection() {
           {/* Left - Main Info */}
           <div className='lg:col-span-7'>
             <motion.div variants={fadeUp}>
-              <span className='tag tag-blue mb-6'>System Engineer</span>
+              <span className='tag tag-blue mb-6'>Software Architect</span>
             </motion.div>
 
             <motion.h1 
@@ -365,7 +369,7 @@ function ProjectCard({ project, onClick, featured = false }: { project: Project;
     return (
       <motion.div
         variants={fadeUp}
-        className='card-interactive p-8 lg:col-span-2 cursor-pointer group'
+        className='card-interactive card-highlight p-8 cursor-pointer group h-full'
         onClick={onClick}
       >
         <div className='flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6'>
@@ -461,21 +465,34 @@ function ProjectsSection() {
               Projects
             </h2>
             <p className='text-[17px] text-[rgba(255,255,255,0.6)] max-w-[600px]'>
-              Distributed systems and infrastructure platforms designed for scale, reliability, and performance.
+              Systems designed around structural constraints — fault-tolerant topologies, auditable workflows, and service boundaries that encode the domain, not just the data.
             </p>
           </motion.div>
 
-          {/* Bento Grid */}
-          <motion.div 
+          {/* Featured row — top 2 projects */}
+          <motion.div
             variants={staggerContainer}
-            className='grid grid-cols-1 lg:grid-cols-3 gap-4'
+            className='grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4'
           >
-            {RESUME_DATA.projects.map((project, index) => (
+            {RESUME_DATA.projects.slice(0, 2).map((project) => (
               <ProjectCard
                 key={project.id}
                 project={project}
                 onClick={() => setSelectedProject(project)}
-                featured={index === 0}
+                featured={true}
+              />
+            ))}
+          </motion.div>
+          {/* Regular grid — remaining projects */}
+          <motion.div
+            variants={staggerContainer}
+            className='grid grid-cols-1 lg:grid-cols-3 gap-4'
+          >
+            {RESUME_DATA.projects.slice(2).map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                onClick={() => setSelectedProject(project)}
               />
             ))}
           </motion.div>
@@ -538,10 +555,10 @@ function ExperienceSection() {
 
                     {/* Responsibilities */}
                     <div className='lg:col-span-8'>
-                      <ul className='space-y-3'>
+                      <ul className='space-y-3 mb-5'>
                         {exp.points.map((point, i) => (
-                          <li 
-                            key={i} 
+                          <li
+                            key={i}
                             className='flex items-start gap-3 text-[15px] text-[rgba(255,255,255,0.8)] leading-[1.5]'
                           >
                             <ChevronRight className='w-4 h-4 text-[#0a84ff] mt-0.5 shrink-0' />
@@ -549,6 +566,13 @@ function ExperienceSection() {
                           </li>
                         ))}
                       </ul>
+                      {exp.tech && (
+                        <div className='flex flex-wrap gap-2 pt-4 border-t border-[rgba(255,255,255,0.06)]'>
+                          {exp.tech.map((t: string) => (
+                            <span key={t} className='tag text-xs'>{t}</span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -568,7 +592,7 @@ function SkillsSection() {
     { name: 'Infrastructure', icon: Cloud, skills: RESUME_DATA.skills['Infrastructure & Platform'], color: '#30d158' },
     { name: 'Messaging', icon: Radio, skills: RESUME_DATA.skills['Messaging & Streaming'], color: '#5e5ce6' },
     { name: 'Data & Storage', icon: Database, skills: RESUME_DATA.skills['Data & Storage'], color: '#ff9f0a' },
-    { name: 'Observability', icon: Activity, skills: RESUME_DATA.skills['Observability'], color: '#bf5af2' },
+    { name: 'AI & Integration', icon: Cpu, skills: RESUME_DATA.skills['AI & Integration'], color: '#bf5af2' },
     { name: 'Languages', icon: Terminal, skills: RESUME_DATA.skills['Languages & Runtimes'], color: '#64d2ff' },
   ];
 
@@ -683,7 +707,7 @@ function ContactSection() {
               Get in Touch
             </h2>
             <p className='text-[17px] text-[rgba(255,255,255,0.6)] max-w-[500px] mx-auto'>
-              Available for system architecture consulting and infrastructure engineering opportunities.
+              Available for software architecture, platform design, and distributed systems consulting.
             </p>
           </motion.div>
 
