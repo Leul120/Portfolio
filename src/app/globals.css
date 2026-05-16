@@ -309,6 +309,23 @@ body {
   color: var(--accent-orange);
 }
 
+/* Featured card top highlight */
+.card-highlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-highlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(10, 132, 255, 0.5), transparent);
+  z-index: 1;
+}
+
 /* Animation - Subtle */
 @keyframes fade-up {
   from {
